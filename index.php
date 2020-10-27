@@ -1,8 +1,3 @@
-<?php
-include "connection.inc.php";
-
-connectionDB();
-?>
 <!DOCTYPE html>
 <html lang="en">
 
