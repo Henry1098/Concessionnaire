@@ -1,5 +1,5 @@
 <?php
-
+namespace Site;
 class Vehicule
 {
     private $id;
@@ -11,10 +11,109 @@ class Vehicule
     private $datefin;
     private $prix;
     private $image;
+    private $idClient;
 
-    public function __construct()
+    
+    public function getIdVehicule()
     {
-        
+        return $this->id;
+    }
+
+    public function setIdVehicule($id)
+    {
+        $this->$id = $id;
+    }
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->$id = $id;
+    }
+
+    public function getEnLocation()
+    {
+        return $this->enLocation;
+    }
+
+    public function setEnLocation($enLocation)
+    {
+        $this->$enLocation = $enLocation;
+    }
+
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    public function setNom($nom)
+    {
+        $this->$nom = $nom;
+    }
+
+    public function getRetard()
+    {
+        return $this->retard;
+    }
+
+    public function setNrJRetard($nbrejretard)
+    {   
+    $this->$nbrejretard = $nbrejretard;
+    }
+
+    
+    public function getNrJRetard()
+    {
+        return $this->nbrejretard;
+    }
+
+    public function setRetard($retard)
+    {   
+    $this->$retard = $retard;
+    }
+
+    public function getDateDeb()
+    {
+        return $this->datedeb;
+    }
+    
+    public function setDateDeb($datedeb)
+    {
+        $this->$datedeb=$datedeb;
+    }
+
+    
+    public function getDateFin()
+    {
+        return $this->datefin;
+    }
+    
+    public function setDateFin($datefin)
+    {
+        $this->$datefin=$datefin;
+    }
+
+    public function getPrix()
+    {
+        return $this->prix;
+    }
+    
+    public function setPrix($prix)
+    {
+        $this->$prix=$prix;
+    }
+
+    
+    public function getImage()
+    {
+        return $this->image;
+    }
+    
+    public function setImage($image)
+    {
+        $this->$image=$image;
     }
 }
 ?>
