@@ -347,7 +347,17 @@
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                
+                <?php
+
+               
+
+                include "PDOConnection.php";
+
+                $vehicle = new PDOConnectionHelper();
+                $vv=$vehicle->connectDB();
+               
+                $vehicle->getAllClientLocation($vehicle->conn);
+                                ?>
               </div>
             </div>
           </div>

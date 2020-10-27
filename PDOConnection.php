@@ -5,26 +5,22 @@ class PDOConnectionHelper {
     private $dbname; 
     private $user; 
     private $passwd; 
-    private $conn;
+    public $conn;
 
-    public function ___construct($host, $dbname, $user, $passwd) 
-    {
-    $this->host = $host;
-    $this->dbname = $dbname;
-    $this->user = $user;
-    $this->passwd = $passwd;
-    $this->conn = connectDB();
-    }
+   
 
-    private function connectDB() {
+    public function connectDB() {
     try {
-    $conn = new PDO("mysql:host=".$this->host.";dbname=".$this->dbname."", $this->user, $this->passwd);
-    // echo "Connexion à la DB réussi";
+    $conn = new PDO("mysql:host=localhost;dbname=locationhertz", "root", "");
+    $this->conn =$conn;
+    
+    echo "Connexion à la DB réussi";
+    return $conn;
     } catch (PDOException $e) {
     print "Erreur :".$e->getMessage();
     }
-
-    return $conn;
+  
+    
     }
 
     public function getAllClient() {
@@ -34,21 +30,44 @@ class PDOConnectionHelper {
     }
 
 
-    public function getAllVehicules() {
-    $sql = "SELECT * FROM vehicule";
+    public function getAllVehicules($conn) {
+    $sql="SELECT * FROM vehicule";
 
-    return $this->conn->query($sql);
+     $afficher=$conn->query($sql);
+     while($vehicule = $afficher->fetch())
+      {
+        echo $vehicule['id_Vehicule']."<br />";
+        echo $vehicule['nom_Vehicule']."<br />";
+        echo $vehicule['en_location_Vehicule']."<br />";
+        echo $vehicule['retard_Vehicule']."<br />";
+        echo $vehicule['nombredesjoursretard_Vehicule']."<br />";
+        echo $vehicule['datedebut_Vehicule']."<br />";
+        echo $vehicule['prix_Vehicule']."<br />";
+        echo $vehicule['image_Vehicule']."<br />";
+        echo $vehicule['client_id_client']."<br />";
+      }
+    
     }
 
     public function getConn() {
     return $this->conn;
     }
 
-    public function getAllClientsLocation($conn) {
+    public function getAllClientLocation($conn) {
     $sql = "SELECT * FROM client WHERE loue_Client = 1";
-    $getClient = $conn->query($sql);
-
-    return $getClient;
+    $afficher=$conn->query($sql);
+    while($client = $afficher->fetch())
+     {
+       echo $client['id_Client']."<br />";
+       echo $client['prenom_Client']."<br />";
+       echo $client['nom_Client']."<br />";
+       echo $client['adresse_Client']."<br />";
+       echo $client['codepostal_Client']."<br />";
+       echo $client['ville_Client']."<br />";
+       echo $client['location_Client']."<br />";
+       echo $client['loue_Client']."<br />";
+       echo $client['vehicule_id_vehicule']."<br />";
+     }
     }
 
     public function ajouterVehicule($conn, $objVehicule, $objClient) {

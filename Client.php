@@ -110,7 +110,7 @@ class Client
         $this->$location = $location;
     }
     
-    public function creeClient($prenom,$nom,$adresse,$codepostal,$ville,$loue,$location,$idvehicule)
+    public function __construct($prenom,$nom,$adresse,$codepostal,$ville,$loue,$location,$idvehicule)
     {
         $this->$prenom = $prenom;
         $this->$nom = $nom;
@@ -121,6 +121,7 @@ class Client
         $this->$location = $location;
         $this->$idvehicule=$idvehicule;
     }
+    
     public function retournerClient()
     {
         return $this;

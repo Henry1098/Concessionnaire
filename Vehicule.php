@@ -115,5 +115,18 @@ class Vehicule
     {
         $this->$image=$image;
     }
+
+    public function __construct($nom,$enLocation,$retard,$nbrejretard,$datedeb,$datefin,$prix,$image,$idClient)
+    {
+        $this->nom = $nom;
+        $this->enLocation = $enLocation;
+        $this->retard = $retard;
+        $this->datedeb = $datedeb;
+        $this->nbrejretard = $nbrejretard;
+        $this->datefin = $datefin;
+        $this->prix = $prix;
+        $this->image=$image;
+        $this->idClient=$idClient;
+    }
 }
 ?>
