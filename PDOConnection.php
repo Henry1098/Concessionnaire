@@ -30,6 +30,18 @@ class PDOConnectionHelper {
     }
 
 
+    public function AllVehicules($conn) {
+        $sql="SELECT * FROM vehicule";
+    
+        return $afficher=$conn->query($sql);
+    }    
+
+    public function VehiculeById($conn,$id) {
+        $sql="SELECT * FROM vehicule WHERE id_Vehicule = ".$id;
+        
+        return $afficher=$conn->query($sql);
+    }
+
     public function getAllVehicules($conn) {
     $sql="SELECT * FROM vehicule";
 
@@ -73,21 +85,33 @@ class PDOConnectionHelper {
     }
 
     public function ajouterVehicule($conn, $objVehicule, $objClient) {
-    $sql = "INSERT INTO vehicule (nom_Vehicule,en_location_Vehicule ,retard_Vehicule,nombredesjoursretard_Vehicule,datedebut_Vehicule, datefin_Vehicule,prix_Vehicule,image_Vehicule,client_id_client) VALUES (:nomV,:en_location,:retard,:retardj,:datedebut,:datefin,:prix,:img,:)";
+    $sql = "INSERT INTO vehicule(nom_Vehicule, en_location_Vehicule, retard_Vehicule, nombredesjoursretard_Vehicule, datedebut_Vehicule, datefin_Vehicule, prix_Vehicule, image_Vehicule, client_id_client) VALUES (:nomV,:en_location,:retard,:retardj,:datedebut,:datefin,:prix,:img,:idClient)";
     $nom=$objVehicule->getNom();
     $loc=$objVehicule->getEnLocation();
     $retard=$objVehicule->getRetard();
     $nrj=$objVehicule->getNrJRetard();
+    $datedeb=$objVehicule->getDateDeb();
+    $datefin=$objVehicule->getDateFin();
+    $prix =$objVehicule->getPrix();
+    $img=$objVehicule->GetImage();
+    
     $ajouter=$conn->prepare($sql);
-    $ajouter->bindParam(":nomV",$nom);   
-    $ajouter->bindParam(":en_location",$loc);   
-    $ajouter->bindParam(":retard",$retard);
-    $ajouter->bindParam(":retardj",$nrj);
-    $ajouter->bindParam(":datedeb",$objVehicule->getDateDeb());
-    $ajouter->bindParam(":datefin",$objVehicule->getDateFin());
-    $ajouter->bindParam(":prix",$objVehicule->getPrix());
-    $ajouter->bindParam(":img",$objVehicule->GetImage());
+    $ajouter->bindParam(":nomV",$nom,PDO::PARAM_STR);   
+    $ajouter->bindParam(":en_location",$loc,PDO::PARAM_STR);   
+    $ajouter->bindParam(":retard",$retard,PDO::PARAM_INT);
+    $ajouter->bindParam(":retardj",$nrj,PDO::PARAM_INT);
+    $ajouter->bindParam(":datedebut",$datedeb,PDO::PARAM_STR);
+    $ajouter->bindParam(":datefin",$datefin,PDO::PARAM_STR);
+    $ajouter->bindParam(":prix",$prix,PDO::PARAM_INT);
+    $ajouter->bindParam(":img",$img,PDO::PARAM_LOB);
     $ajouter->bindParam(":idClient",$objClient);
+    $ok=$ajouter->execute();
+    if($ok)
+    {
+        echo "Vos données ont été enregistré dans la DB";
+    }else{
+        echo "Vos données n'ont pas été enregistré dans la DB";    
+    }
 }
 
     public function effacerVehicule($conn, $id){

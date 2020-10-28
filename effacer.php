@@ -348,8 +348,27 @@
               <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
             </div>
             <div class="card-body">
-<form enctype="multipart/form-data" method="POST">
-  <div class="form-group row">
+            <form  method="POST">
+            <select class="browser-default custom-select">
+            <option selected>Open this select menu</option>
+            <?php 
+              include "PDOConnection.php";
+
+              $vehicle = new PDOConnectionHelper();
+              $vv=$vehicle->connectDB();
+              $resultat=$vehicle->AllVehicules($vv);
+            while($res=$resultat->fetch())
+              echo '<option value="1">'.$res["id_Vehicule"].' '.$res["nom_Vehicule"].'</option>'; 
+            ?>
+            </select>
+            <div class="offset-4 col-8 mt-5">
+      <button name="submit" type="submit" value="idsubmit" class="btn btn-primary">Submit</button>
+    
+        </form>
+            <form enctype="multipart/form-data" method="POST">
+     
+      
+  <div class="form-group row mt-5">
     <label for="text" class="col-4 col-form-label">Nom du vehicule</label> 
     <div class="col-8">
       <input id="text" name="text" type="text" class="form-control" required="required">
@@ -404,29 +423,12 @@
      </div>       
   <div class="form-group row mt-5">
     <div class="offset-4 col-8">
-      <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+      <button name="submit" type="submit" value="modifsubmit" class="btn btn-primary">Submit</button>
     </div>
   </div>
-</form>
-<?php
 
-use Site\Vehicule;
+            </form>
 
-include "FichierImage.php";
-include "PDOConnection.php";
-include "Vehicule.php";
-               
-if ( isset($_FILES['fic']) && !empty($_POST['text']))
-         {
-          $fichier = new FichierImage();
-          $vehicle = new PDOConnectionHelper();
-          $img=$fichier->transfert();
-            $vehicule = new Vehicule($_POST["text"],$_POST["location"],$_POST["retard"],$_POST["nbrejretard"],$_POST["datedeb"],$_POST["datedefin"],$_POST["prix"],"maybach.png",1);
-
-            $vv=$vehicle->connectDB();
-            $vehicle->ajouterVehicule($vehicle->getConn(),$vehicule,1);
-         }
-         ?>
         </div>
         <!-- /.container-fluid -->
 

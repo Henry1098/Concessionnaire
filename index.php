@@ -68,8 +68,8 @@
             <h6 class="collapse-header">Gestion des Vehicules:</h6>
             <a class="collapse-item" href="index.php">Afficher tous les vehicules</a>
             <a class="collapse-item" href="ajout.php">Ajouter un vehicule</a>
-            <a class="collapse-item" href="cards.html">Modifier un vehicule</a>
-            <a class="collapse-item" href="cards.html">Effacer des vehicules</a>
+            <a class="collapse-item" href="modif.php">Modifier un vehicule</a>
+            <a class="collapse-item" href="effacer.php">Effacer des vehicules</a>
           </div>
         </div>
       </li>
