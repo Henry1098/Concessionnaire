@@ -348,54 +348,85 @@
               <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
             </div>
             <div class="card-body">
-              <div class="table-responsive">
-              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Id Vehicule</th>
-                      <th>Nom Vehicule</th>
-                      <th>En Location</th>
-                      <th>Retard</th>
-                      <th>Nombre des jours de retard</th>
-                      <th>Date de debut</th>
-					  <th>Date de fin</th>
-					  <th>Prix Vehicule</th>
-					  <th>Image de Vehicule</th>
-					  <th>Nom du client</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-				   </tr>
-                      <th>Id Vehicule</th>
-                      <th>Nom Vehicule</th>
-                      <th>En Location</th>
-                      <th>Retard</th>
-                      <th>Nombre des jours de retard</th>
-                      <th>Date de debut</th>
-					  <th>Date de fin</th>
-					  <th>Prix Vehicule</th>
-					  <th>Image de Vehicule</th>
-					  <th>Nom du client</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                <?php
+<form enctype="multipart/form-data" method="POST">
+  <div class="form-group row">
+    <label for="text" class="col-4 col-form-label">Nom du vehicule</label> 
+    <div class="col-8">
+      <input id="text" name="text" type="text" class="form-control" required="required">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="location" class="col-4 col-form-label">En location</label> 
+    <div class="col-8">
+      <select id="location" name="location" class="custom-select" required="required">
+        <option value="oui">Oui</option>
+        <option value="non">Non</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="retard" class="col-4 col-form-label">En retard</label> 
+    <div class="col-8">
+      <select id="retard" name="retard" class="custom-select" required="required">
+        <option value="oui">Oui</option>
+        <option value="non">Non</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="nbrejretard" class="col-4 col-form-label">Nombre des jours de retard</label> 
+    <div class="col-8">
+      <input id="nbrejretard" name="nbrejretard" type="text" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="datedeb" class="col-4 col-form-label">Date de Debut</label> 
+    <div class="col-8">
+      <input id="datedeb" name="datedeb" type="text" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="datedefin" class="col-4 col-form-label">Date de Fin</label> 
+    <div class="col-8">
+      <input id="datedefin" name="datedefin" type="text" class="form-control">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="prix" class="col-4 col-form-label">Prix du Véhicule</label> 
+    <div class="col-8">
+      <input id="prix" name="prix" type="text" class="form-control">
+    </div>
+  </div>
+     <div class="col-8">
+     <label for="prix" class="col-4 col-form-label">Image du Véhicule</label> 
+     <input type="hidden" name="MAX_FILE_SIZE" value="250000" />
+         <input type="file" name="fic" size=50 />
+     </div>       
+  <div class="form-group row mt-5">
+    <div class="offset-4 col-8">
+      <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>
+<?php
 
+use Site\Vehicule;
+
+include "FichierImage.php";
+include "PDOConnection.php";
+include "Vehicule.php";
                
+if ( isset($_FILES['fic']) && !empty($_POST['text']))
+         {
+          $fichier = new FichierImage();
+          $vehicle = new PDOConnectionHelper();
+          $img=$fichier->transfert();
+            $vehicule = new Vehicule($_POST["text"],$_POST["location"],$_POST["retard"],$_POST["nbrejretard"],$_POST["datedeb"],$_POST["datedefin"],$_POST["prix"],$img,1,);
 
-                include "PDOConnection.php";
-
-                $vehicle = new PDOConnectionHelper();
-                $vv=$vehicle->connectDB();
-                $vehicle->getAllVehicules($vehicle->getConn());
-                
-                                ?>
-                                </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
+            $vv=$vehicle->connectDB();
+            $vehicle->ajouterVehicule($vv,$vehicule,1);
+         }
+         ?>
         </div>
         <!-- /.container-fluid -->
 

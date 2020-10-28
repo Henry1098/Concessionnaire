@@ -5,7 +5,7 @@ class PDOConnectionHelper {
     private $dbname; 
     private $user; 
     private $passwd; 
-    public $conn;
+    private $conn;
 
    
 
@@ -36,15 +36,17 @@ class PDOConnectionHelper {
      $afficher=$conn->query($sql);
      while($vehicule = $afficher->fetch())
       {
-        echo $vehicule['id_Vehicule']."<br />";
-        echo $vehicule['nom_Vehicule']."<br />";
-        echo $vehicule['en_location_Vehicule']."<br />";
-        echo $vehicule['retard_Vehicule']."<br />";
-        echo $vehicule['nombredesjoursretard_Vehicule']."<br />";
-        echo $vehicule['datedebut_Vehicule']."<br />";
-        echo $vehicule['prix_Vehicule']."<br />";
-        echo $vehicule['image_Vehicule']."<br />";
-        echo $vehicule['client_id_client']."<br />";
+        echo '<tr><th>'. $vehicule["id_Vehicule"].'</th>';
+        echo "                      <th>".$vehicule["nom_Vehicule"]."</th>";
+        echo "                      <th>".$vehicule["en_location_Vehicule"]."</th>";
+        echo "                      <th>".$vehicule["retard_Vehicule"]."</th>";
+        echo "                      <th>". $vehicule["nombredesjoursretard_Vehicule"]."</th>";
+        echo "                      <th>". $vehicule["datedebut_Vehicule"]. "</th>";
+        echo "					  <th>". $vehicule["datefin_Vehicule"] ."</th>";
+        echo "					  <th>".$vehicule["prix_Vehicule"]."</th>";
+        echo "					  <th>".$vehicule["image_Vehicule"] ."</th>";
+        echo "					  <th>".$vehicule["client_id_client"] ."</th>";
+        echo "                    </tr>";
       }
     
     }
@@ -72,11 +74,15 @@ class PDOConnectionHelper {
 
     public function ajouterVehicule($conn, $objVehicule, $objClient) {
     $sql = "INSERT INTO vehicule (nom_Vehicule,en_location_Vehicule ,retard_Vehicule,nombredesjoursretard_Vehicule,datedebut_Vehicule, datefin_Vehicule,prix_Vehicule,image_Vehicule,client_id_client) VALUES (:nomV,:en_location,:retard,:retardj,:datedebut,:datefin,:prix,:img,:)";
+    $nom=$objVehicule->getNom();
+    $loc=$objVehicule->getEnLocation();
+    $retard=$objVehicule->getRetard();
+    $nrj=$objVehicule->getNrJRetard();
     $ajouter=$conn->prepare($sql);
-    $ajouter->bindParam(":nomV",$objVehicule->getNom());   
-    $ajouter->bindParam(":en_location",$objVehicule->getEnLocation());   
-    $ajouter->bindParam(":retard",$objVehicule->getRetard());
-    $ajouter->bindParam(":retardj",$objVehicule->getNrJRetard());
+    $ajouter->bindParam(":nomV",$nom);   
+    $ajouter->bindParam(":en_location",$loc);   
+    $ajouter->bindParam(":retard",$retard);
+    $ajouter->bindParam(":retardj",$nrj);
     $ajouter->bindParam(":datedeb",$objVehicule->getDateDeb());
     $ajouter->bindParam(":datefin",$objVehicule->getDateFin());
     $ajouter->bindParam(":prix",$objVehicule->getPrix());
