@@ -51,12 +51,6 @@ require "header.php";
     </div>
   </div>
   <div class="form-group row">
-    <label for="locations" class="col-4 col-form-label">Locations</label> 
-    <div class="col-8">
-      <input id="locations" name="locations" type="text" class="form-control">
-    </div>
-  </div>
-  <div class="form-group row">
     <label for="loue" class="col-4 col-form-label">Loue</label> 
     <div class="col-8">
       <select id="loue" name="loue" class="custom-select">

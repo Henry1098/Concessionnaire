@@ -1,4 +1,5 @@
 <?php
+header("Refresh:0");
 require "header.php";
 ?>
 
@@ -78,12 +79,6 @@ include "Model/Client.php";
     echo '    </div> ';
     echo '  </div> ';
     echo '  <div class="form-group row"> ';
-    echo '    <label for="locations" class="col-4 col-form-label">Locations</label>  ';
-    echo '    <div class="col-8"> ';
-    echo '      <input id="locations" name="locations" type="text" class="form-control" value="'.$identification['location_Client'].'"> ';
-    echo '    </div> ';
-    echo '  </div> ';
-    echo '  <div class="form-group row"> ';
     echo '    <label for="loue" class="col-4 col-form-label">Loue</label>  ';
     echo '    <div class="col-8"> ';
     if($identification['loue_Client']=="oui"){
@@ -97,12 +92,6 @@ include "Model/Client.php";
     echo '      </select> ';
     echo '    </div> ';
     echo '  </div> ';
-    echo '<div class="form-group row">';
-echo '    <label for="id" class="col-4 col-form-label">Id Vehicule</label> ';
-echo '    <div class="col-8">';
-echo '      <input id="id" name="id" type="text" class="form-control">';
-echo '    </div>';
-echo '  </div> ';
     echo '  <div class="form-group row"> ';
     echo '    <div class="offset-4 col-8"> ';
     echo '      <button name="submit" type="submit"  value="valider" class="btn btn-primary">Submit</button> ';
@@ -115,8 +104,7 @@ echo '  </div> ';
   if(isset($_GET['submit'])&& $_GET['submit']=="valider")
   {  // $fichier = new FichierImage();
      // $img=$fichier->transfert();
-     $clients = new Client($_GET['prenom'],$_GET['nom'],$_GET['adresse'],$_GET['codepostal'],$_GET['ville'],$_GET['loue'],$_GET['locations']);
-    $clients->setIdVehicule($_GET['id']);
+     $clients = new Client($_GET['prenom'],$_GET['nom'],$_GET['adresse'],$_GET['codepostal'],$_GET['ville'],$_GET['loue']);
      
    $vehicle->majClient($vv,$idC,$clients); 
    }else{

@@ -36,7 +36,7 @@ class PDOConnectionHelper {
         echo "                      <th>".$client["adresse_Client"]."</th>";
         echo "                      <th>".$client["codepostal_Client"]."</th>";
         echo "                      <th>".$client["ville_Client"]. "</th>";
-        echo "					  <th>".$client["location_Client"] ."</th>";
+        echo "					  <th>".$client["loue_Client"] ."</th>";
         echo "                    </tr>";
       }
     }
@@ -119,10 +119,15 @@ class PDOConnectionHelper {
     $ok=$ajouter->execute();
     if($ok)
     {
-        echo "Vos données ont été enregistré dans la DB";
-    }else{
-        echo "Vos données n'ont pas été enregistré dans la DB";    
-    }
+        echo '<div class="alert alert-primary" role="alert">
+        Le Vehicule a été ajouté dans la Base de données!
+      </div>';         }else{
+          
+        
+        echo '<div class="alert alert-primary" role="alert">
+        Le Vehicule n\'as pas être ajouté dans la Base de données!
+      </div>';     
+          }
 }
 
 public function ajouterClient($conn, $objClient) {
@@ -146,9 +151,13 @@ public function ajouterClient($conn, $objClient) {
     $ok=$ajouterClient->execute();
     if($ok)
     {
-        echo "Vos données ont été enregistré dans la DB";
+        echo '<div class="alert alert-primary" role="alert">
+        Vos données ont été enregistré avec succes!
+      </div>';
     }else{
-        echo "Vos données n'ont pas été enregistré dans la DB";    
+        echo '<div class="alert alert-primary" role="alert">
+        Vos données n\'ont malheureusement pas pu être enregistrées!
+      </div>'; 
     }
 }
     public function effacerVehicule($conn, $id){
@@ -158,9 +167,12 @@ public function ajouterClient($conn, $objClient) {
         $ok=$delete->execute();
         if($ok)
         {
-            echo "Ok!";
-        }else{
-            echo "No Ok!";
+            echo '<div class="alert alert-primary" role="alert">
+            Le Vehicule a été effacé!
+          </div>';        }else{
+            echo '<div class="alert alert-primary" role="alert">
+            Le vehicule n\'as pas pu être effacées!
+          </div>';
         }
         
 
@@ -175,9 +187,13 @@ public function ajouterClient($conn, $objClient) {
         $ok=$delete->execute();
         if($ok)
         {
-            echo "Ok!";
+            echo '<div class="alert alert-primary" role="alert">
+            Le Client a été effacé!
+          </div>';     
         }else{
-            echo "No Ok!";
+            echo '<div class="alert alert-primary" role="alert">
+            Le Client n\'as pas pu être effacé!
+          </div>';     
         }
         
 
@@ -185,7 +201,7 @@ public function ajouterClient($conn, $objClient) {
     public function majVehicule($conn, $id,$objVehicule){
         $sql="UPDATE vehicule SET 
         nom_Vehicule =:nomV, 
-        marque_Vehicule=:maraque,
+        marque_Vehicule=:marque,
         en_location_Vehicule =:en_location,
          prix_Vehicule = :prix,
          image_Vehicule = :img WHERE id_Vehicule = :id";
@@ -194,12 +210,12 @@ public function ajouterClient($conn, $objClient) {
         $loc=$objVehicule->getEnLocation();
         $prix =$objVehicule->getPrix();
         $img=$objVehicule->GetImage();
-        $idC = $objVehicule->getIdClient();
-        
+        $marque=$objVehicule->getMarque();
+
         $maj = $conn->prepare($sql);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $maj->bindParam(":nomV",$nom,PDO::PARAM_STR);
-        $maj->bindParam(":marque",$nom,PDO::PARAM_STR);    
+        $maj->bindParam(":marque",$marque,PDO::PARAM_STR);    
         $maj->bindParam(":en_location",$loc,PDO::PARAM_STR);   
         $maj->bindParam(":prix",$prix,PDO::PARAM_INT);
         $maj->bindParam(":img",$img,PDO::PARAM_LOB);
@@ -208,9 +224,13 @@ public function ajouterClient($conn, $objClient) {
 
         if($ok)
         {
-            echo "Ok!";
+            echo '<div class="alert alert-primary" role="alert">
+            Le Vehicule a été mise à jour!
+          </div>';     
         }else{
-            echo "No Ok!";
+            echo '<div class="alert alert-primary" role="alert">
+            Le Vehicule n\'a pas pu être mise à jour!
+          </div>';     
         }
         
 
@@ -246,9 +266,12 @@ public function ajouterClient($conn, $objClient) {
      $ok=$ajouterClient->execute();
         if($ok)
         {
-            echo "Ok!";
-        }else{
-            echo "No Ok!";
+            echo '<div class="alert alert-primary" role="alert">
+            Les données du clients ont été mise à jour!
+          </div>';             }else{
+            echo '<div class="alert alert-primary" role="alert">
+            Les données du clients n\'ont pas pu être mise à jour!
+          </div>';     
         }
         
 

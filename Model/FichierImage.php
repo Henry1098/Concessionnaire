@@ -1,5 +1,4 @@
 <?php
-include "Image.php";
 
 class FichierImage{
 

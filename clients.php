@@ -26,9 +26,7 @@ require "header.php";
                       <th>Adresse</th>
                       <th>Code postal</th>
                       <th>Ville</th>
-					  <th>Locations</th>
 					  <th>Loue</th>
-					  <th>Id du véhicule</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -39,9 +37,7 @@ require "header.php";
                       <th>Adresse</th>
                       <th>Code postal</th>
                       <th>Ville</th>
-					  <th>Locations</th>
 					  <th>Loue</th>
-					  <th>Id du véhicule</th>
                     </tr>
                   </tfoot>
                   <tbody>

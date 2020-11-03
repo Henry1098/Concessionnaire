@@ -1,4 +1,5 @@
 <?php
+header("Refresh:0");
 require "header.php";
 ?>
 
@@ -50,37 +51,31 @@ include "Model/Client.php";
     echo '  <div class="form-group row"> ';
     echo '    <label for="prenom" class="col-4 col-form-label">Prenom Client</label>  ';
     echo '    <div class="col-8"> ';
-    echo '      <input id="prenom" name="prenom" type="text" class="form-control" required="required" value="'.$identification['prenom_Client'].'"> ';
+    echo '      <input id="prenom" name="prenom" type="text" class="form-control" required="required" value="'.$identification['prenom_Client'].'" readonly> ';
     echo '    </div> ';
     echo '  </div> ';
     echo '  <div class="form-group row"> ';
     echo '    <label for="nom" class="col-4 col-form-label">Nom Client</label>  ';
     echo '    <div class="col-8"> ';
-    echo '      <input id="nom" name="nom" type="text" class="form-control" required="required" value="'.$identification['nom_Client'].'"> ';
+    echo '      <input id="nom" name="nom" type="text" class="form-control" required="required" value="'.$identification['nom_Client'].'" readonly> ';
     echo '    </div> ';
     echo '  </div> ';
     echo '  <div class="form-group row"> ';
     echo '    <label for="adresse" class="col-4 col-form-label">Adresse</label>  ';
     echo '    <div class="col-8"> ';
-    echo '      <input id="adresse" name="adresse" type="text" class="form-control" required="required" value="'.$identification['adresse_Client'].'"> ';
+    echo '      <input id="adresse" name="adresse" type="text" class="form-control" required="required" value="'.$identification['adresse_Client'].'" readonly> ';
     echo '    </div> ';
     echo '  </div> ';
     echo '  <div class="form-group row"> ';
     echo '    <label for="codepostal" class="col-4 col-form-label">Code Postal</label>  ';
     echo '    <div class="col-8"> ';
-    echo '      <input id="codepostal" name="codepostal" type="text" class="form-control" required="required" value="'.$identification['codepostal_Client'].'"> ';
+    echo '      <input id="codepostal" name="codepostal" type="text" class="form-control" required="required" value="'.$identification['codepostal_Client'].'" readonly> ';
     echo '    </div> ';
     echo '  </div> ';
     echo '  <div class="form-group row"> ';
     echo '    <label for="ville" class="col-4 col-form-label">Ville</label>  ';
     echo '    <div class="col-8"> ';
-    echo '      <input id="ville" name="ville" type="text" class="form-control" required="required" value="'.$identification['ville_Client'].'"> ';
-    echo '    </div> ';
-    echo '  </div> ';
-    echo '  <div class="form-group row"> ';
-    echo '    <label for="locations" class="col-4 col-form-label">Locations</label>  ';
-    echo '    <div class="col-8"> ';
-    echo '      <input id="locations" name="locations" type="text" class="form-control" value="'.$identification['location_Client'].'"> ';
+    echo '      <input id="ville" name="ville" type="text" class="form-control" required="required" value="'.$identification['ville_Client'].'" readonly> ';
     echo '    </div> ';
     echo '  </div> ';
     echo '  <div class="form-group row"> ';
@@ -89,30 +84,23 @@ include "Model/Client.php";
     if($identification['loue_Client']=="oui"){
     echo '      <select id="loue" name="loue" class="custom-select"> ';
     echo '        <option value="oui" selected>Oui</option> ';
-    echo '        <option value="non">Non</option> ';}else{
+  }else{
         echo '      <select id="loue" name="loue" class="custom-select"> ';
-        echo '        <option value="oui">Oui</option> ';
         echo '        <option value="non" selected>Non</option> ';
     }
     echo '      </select> ';
     echo '    </div> ';
     echo '  </div> ';
-    echo '<div class="form-group row">';
-echo '    <label for="id" class="col-4 col-form-label">Id Vehicule</label> ';
-echo '    <div class="col-8">';
-echo '      <input id="id" name="id" type="text" class="form-control">';
-echo '    </div>';
-echo '  </div> ';
     echo '  <div class="form-group row"> ';
     echo '    <div class="offset-4 col-8"> ';
-    echo '      <button name="submit" type="button"  value="valider" class="btn btn-primary">Submit</button> ';
+    echo '      <button name="submit" type="submit"  value="effacer" class="btn btn-primary">Effacer</button> ';
     echo '    </div> ';
     echo '  </div> ';
     echo '</form> ';
 
   }		
   	
-  if(isset($_GET['submit'])&& $_GET['submit']=="modifsubmit")
+  if(isset($_GET['submit'])&& $_GET['submit']=="effacer")
   { 
       echo $idC;
      $vehicle->effacerClient($vv, $idC);

@@ -1,4 +1,5 @@
 <?php
+header("Refresh:0");
 require "header.php";
 ?>
 
@@ -44,7 +45,7 @@ include "Model/Vehicule.php";
    
   $id = $vehicle->VehiculeById($vv, $_POST['id']);
   while($identification = $id->fetch()){
-    echo '<form enctype="multipart/form-data" method="POST">';
+    echo '<form enctype="multipart/form-data" method="GET">';
     echo '  <div class="form-group row">';
     echo '    <label for="text" class="col-4 col-form-label">Nom du vehicule</label> ';
     echo '    <div class="col-8">';
@@ -87,19 +88,20 @@ include "Model/Vehicule.php";
     echo '     </div>       ';
     echo '  <div class="form-group row mt-5">';
     echo '    <div class="offset-4 col-8">';
-    echo '      <button name="submit" type="submit" class="btn btn-primary">Submit</button>';
+    echo '      <button name="submit" type="submit" value="modifsubmit" class="btn btn-primary">Modifier</button>';
     echo '    </div>';
     echo '  </div>';
     echo '</form>';
   }		
   	
-  if(isset($_GET['submit'])&& $_GET['submit']=="modifsubmit")
+  if(isset($_GET['submit']) && $_GET['submit'] == "modifsubmit" && isset($_FILES['fic']))
   {  
     $fichier = new FichierImage();
      $img=$fichier->transfert();
-     $vehicule = new Vehicule($_POST["text"],$_POST["marque"],$_POST['location'],$_POST["prix"],$img);
-
-   $vehicle->majVehicule($vv,$_POST['id'],$vehicule); 
+     $vehicule = new Vehicule($_GET["text"],$_GET["marque"],$_GET['location'],$_GET["prix"],$img);
+    
+   $vehicle->majVehicule($vv,$_POST['id'],$vehicule);
+   echo "salut";
   }else{
    
   echo "hello0";
