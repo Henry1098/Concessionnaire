@@ -1,5 +1,4 @@
 <?php
-header("Refresh:0");
 require "header.php";
 ?>
 

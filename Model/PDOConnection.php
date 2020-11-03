@@ -77,7 +77,7 @@ class PDOConnectionHelper {
         echo "                      <th>".$vehicule["en_location_Vehicule"]."</th>";
         echo "					  <th>".$vehicule["prix_Vehicule"]."</th>";
        
-        echo '					  <th><img src="'.$vehicule["image_Vehicule"] .'" class="img-responsive"></th>'; 
+        echo '					  <th><img src="'.$vehicule["image_Vehicule"] .'" class="img-fluid"></th>'; 
         echo "                    </tr>";
       }
     
