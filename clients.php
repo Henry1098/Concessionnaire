@@ -1,5 +1,4 @@
 <?php
-
 require "header.php";
 ?>
 
@@ -21,24 +20,28 @@ require "header.php";
               <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Id Vehicule</th>
-                      <th>Nom Vehicule</th>
-                      <th>Marque du Vehicule</th>
-                      <th>En Location</th>
-					  <th>Prix Vehicule</th>
-            <th>Image de Vehicule</th>
-          
+                      <th>Id Client</th>
+                      <th>Prenom Client</th>
+                      <th>Nom Client</th>
+                      <th>Adresse</th>
+                      <th>Code postal</th>
+                      <th>Ville</th>
+					  <th>Locations</th>
+					  <th>Loue</th>
+					  <th>Id du véhicule</th>
                     </tr>
                   </thead>
                   <tfoot>
 				   </tr>
-                      <th>Id Vehicule</th>
-                      <th>Nom Vehicule</th>
-                      <th>Marque du Vehicule</th>
-                      <th>En Location</th>
-					  <th>Prix Vehicule</th>
-            <th>Image de Vehicule</th>
-            
+                      <th>Id Client</th>
+                      <th>Prenom Client</th>
+                      <th>Nom Client</th>
+                      <th>Adresse</th>
+                      <th>Code postal</th>
+                      <th>Ville</th>
+					  <th>Locations</th>
+					  <th>Loue</th>
+					  <th>Id du véhicule</th>
                     </tr>
                   </tfoot>
                   <tbody>
@@ -50,7 +53,7 @@ require "header.php";
 
                 $vehicle = new PDOConnectionHelper();
                 $vv=$vehicle->connectDB();
-                $vehicle->getAllVehicules($vehicle->getConn());
+                $vehicle->getAllClient($vehicle->getConn());
                 
                                 ?>
                                 </tbody>
@@ -64,8 +67,7 @@ require "header.php";
 
       </div>
       <!-- End of Main Content -->
-
-      <?php
+<?php
 
 require "footer.php";
 ?>

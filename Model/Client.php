@@ -10,8 +10,6 @@ class Client
     private $codepostal;
     private $ville;
     private $loue;
-    private $location;
-    private $idvehicule;
 
 
     public function getId()
@@ -100,26 +98,15 @@ class Client
     }
 
     
-    public function getLocation()
-    {
-        return $this->location;
-    }
-
-    public function setLocation($location)
-    {
-        $this->$location = $location;
-    }
     
-    public function __construct($prenom,$nom,$adresse,$codepostal,$ville,$loue,$location,$idvehicule)
+    public function __construct($prenom,$nom,$adresse,$codepostal,$ville,$loue)
     {
-        $this->$prenom = $prenom;
-        $this->$nom = $nom;
-        $this->$adresse = $adresse;
-        $this->$codepostal = $codepostal;
-        $this->$ville = $ville;
-        $this->$loue = $loue;
-        $this->$location = $location;
-        $this->$idvehicule=$idvehicule;
+        $this->prenom = $prenom;
+        $this->nom = $nom;
+        $this->adresse = $adresse;
+        $this->codepostal = $codepostal;
+        $this->ville = $ville;
+        $this->loue = $loue;
     }
     
     public function retournerClient()

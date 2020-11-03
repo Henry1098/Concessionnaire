@@ -1,7 +1,9 @@
 <?php
+include "Image.php";
+
 class FichierImage{
 
-
+private $Img;
 
     public function transfert(){
         $ret        = false;
@@ -27,7 +29,9 @@ class FichierImage{
             $img_type = $_FILES['fic']['type'];
             $img_nom  = $_FILES['fic']['name'];
             $img_blob = file_get_contents ($_FILES['fic']['tmp_name']);
-            return $img_blob;
+            $Img = new Img();
+            $Img->setImage($img_blob,$img_type);
+            return $Img->getImage();
         }
     }
 
