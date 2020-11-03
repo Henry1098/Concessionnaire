@@ -71,7 +71,7 @@ if ( isset($_FILES['fic']) && !empty($_POST['text']))
             $vehicule = new Vehicule($_POST["text"],$_POST["marque"],$_POST['location'],$_POST["prix"],$img);
 
             $vv=$vehicle->connectDB();
-            $vehicle->ajouterVehicule($vehicle->getConn(),$vehicule,$img->getImgType());
+            $vehicle->ajouterVehicule($vehicle->getConn(),$vehicule);
           }
          ?>
         </div>
@@ -82,4 +82,4 @@ if ( isset($_FILES['fic']) && !empty($_POST['text']))
       <?php
 
 require "footer.php";
-?>
+?> 

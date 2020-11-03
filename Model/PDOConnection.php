@@ -77,7 +77,7 @@ class PDOConnectionHelper {
         echo "                      <th>".$vehicule["en_location_Vehicule"]."</th>";
         echo "					  <th>".$vehicule["prix_Vehicule"]."</th>";
        
-        echo "					  <th>".$vehicule["image_Vehicule"] ."</th>"; 
+        echo '					  <th><img src="'.$vehicule["image_Vehicule"] .'" class="img-responsive"></th>'; 
         echo "                    </tr>";
       }
     
@@ -102,21 +102,20 @@ class PDOConnectionHelper {
      }
     }
 
-    public function ajouterVehicule($conn, $objVehicule, $type) {
-    $sql = "INSERT INTO vehicule(nom_Vehicule, marque_Vehicule,en_location_Vehicule, prix_Vehicule, image_Vehicule, typeImage_Vehicule)
-     VALUES (:nomV,:marque,:en_location,:prix,:img,:imgtype)";
+    public function ajouterVehicule($conn, $objVehicule) {
+    $sql = "INSERT INTO vehicule(nom_Vehicule, marque_Vehicule,en_location_Vehicule, prix_Vehicule, image_Vehicule)
+     VALUES (:nomV,:marque,:en_location,:prix,:img)";
     $nom=$objVehicule->getNom();
     $loc=$objVehicule->getEnLocation();
     $prix =$objVehicule->getPrix();
-    $img=($objVehicule->GetImage())->getImg();
+    $img=$objVehicule->GetImage();
     $marque=$objVehicule->getMarque();
     $ajouter=$conn->prepare($sql);
     $ajouter->bindParam(":nomV",$nom,PDO::PARAM_STR);
     $ajouter->bindParam(":marque",$marque,PDO::PARAM_STR);     
     $ajouter->bindParam(":en_location",$loc,PDO::PARAM_STR); 
     $ajouter->bindParam(":prix",$prix,PDO::PARAM_INT);
-    $ajouter->bindParam(":img",$img,PDO::PARAM_LOB);
-    $ajouter->bindParam(":imgtype",$type,PDO::PARAM_STR);
+    $ajouter->bindParam(":img",$img,PDO::PARAM_STR);
     $ok=$ajouter->execute();
     if($ok)
     {
@@ -189,8 +188,7 @@ public function ajouterClient($conn, $objClient) {
         marque_Vehicule=:maraque,
         en_location_Vehicule =:en_location,
          prix_Vehicule = :prix,
-         image_Vehicule = :img,
-         typeImage_Vehicule = :imgtype WHERE id_Vehicule = :id";
+         image_Vehicule = :img WHERE id_Vehicule = :id";
      
         $nom=$objVehicule->getNom();
         $loc=$objVehicule->getEnLocation();
@@ -205,7 +203,6 @@ public function ajouterClient($conn, $objClient) {
         $maj->bindParam(":en_location",$loc,PDO::PARAM_STR);   
         $maj->bindParam(":prix",$prix,PDO::PARAM_INT);
         $maj->bindParam(":img",$img,PDO::PARAM_LOB);
-        $maj->bindParam(":imgtype",$idC,PDO::PARAM_STR);
         $maj->bindParam(":id",$id,PDO::PARAM_INT);
         $ok=$maj->execute();
 
