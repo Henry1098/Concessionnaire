@@ -33,18 +33,18 @@
           <div class="card-body p-0">
             <!-- Nested Row within Card Body -->
             <div class="row">
-              <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+              <div class="col-lg-6 d-none d-lg-block "></div>
               <div class="col-lg-6">
                 <div class="p-5">
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                   </div>
-                  <form class="user">
+                  <form class="user" method="POST">
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address...">
+                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter Email Address..." name="Email">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" name="Password">
                     </div>
                     <div class="form-group">
                       <div class="custom-control custom-checkbox small">
@@ -52,7 +52,7 @@
                         <label class="custom-control-label" for="customCheck">Remember Me</label>
                       </div>
                     </div>
-                    <a href="index.php" class="btn btn-primary btn-user btn-block">
+                    <a href="index.php" class="btn btn-primary btn-user btn-block" name='submit'>
                       Login
                     </a>
                     <hr>
@@ -77,7 +77,14 @@
         </div>
 
       </div>
-
+      <?php
+      include "Model/PDOConnection.php";
+      $user = new PDOConnectionHelper();
+      if(!empty($_POST['password']) && !empty($_POST['email'])&& isset($_POST['submit']))
+    {
+      $user->getUser($_POST['email'],$_POST['password']);  
+    }
+    ?>
     </div>
 
   </div>

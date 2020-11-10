@@ -1,7 +1,20 @@
 <?php
-require "header.php";
-?>
 
+
+session_start();
+
+require "header.php";
+include "Model/User.php";
+
+$user = new UserId();
+$connected=$user->isConnected();
+if(!$connected)
+{
+// echo '<script>window.location.replace("login.php");</script>';
+}
+
+
+?>
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -47,9 +60,9 @@ require "header.php";
 
                 include "Model/PDOConnection.php";
 
-                $vehicle = new PDOConnectionHelper();
-                $vv=$vehicle->connectDB();
-                $vehicle->getAllClient($vehicle->getConn());
+                $pdo = new PDOConnectionHelper();
+                $vv=$pdo->connectDB();
+                $pdo->getAllClient($pdo->getConn());
                 
                                 ?>
                                 </tbody>

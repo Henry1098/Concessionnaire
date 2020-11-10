@@ -1,24 +1,38 @@
 <?php
-require "header.php";
-?>
 
+
+
+session_start();
+
+require "header.php";
+include "Model/User.php";
+
+$user = new UserId();
+$connected=$user->isConnected();
+if(!$connected)
+{
+ //echo '<script>window.location.replace("login.php");</script>';
+}
+
+
+?>
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+          <h1 class="h3 mb-2 text-gray-800">Modifier un véhicule</h1>
+          <p class="mb-4">Veuillez selectionner un véhicule pour le modifier.</p>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Modifier vehicule</h6>
             </div>
             <div class="card-body">
             <form  method="POST">
             <select class="browser-default custom-select" name="id">
-            <option selected>Open this select menu</option>
+            <option selected>Selectionnez le véhicule à modfiier</option>
             <?php
 use Site\Vehicule;
   
@@ -30,7 +44,7 @@ include "Model/Vehicule.php";
               $vv=$vehicle->connectDB();
               $resultat=$vehicle->AllVehicules($vv);
             while($res=$resultat->fetch())
-              echo '<option value="'.$res["id_Vehicule"].'">'.$res["id_Vehicule"].' '.$res["nom_Vehicule"].'</option>'; 
+              echo '<option value="'.$res["id_Vehicule"].'">'.$res["id_Vehicule"].' '.$res["marque_Vehicule"].' '.$res["nom_Vehicule"].'</option>'; 
             ?>
             </select>
             <div class="offset-4 col-8 mt-5">
@@ -100,10 +114,8 @@ include "Model/Vehicule.php";
      $vehicule = new Vehicule($_GET["text"],$_GET["marque"],$_GET['location'],$_GET["prix"],$img);
     
    $vehicle->majVehicule($vv,$_POST['id'],$vehicule);
-   echo "salut";
   }else{
    
-  echo "hello0";
   }
 
 			}else{

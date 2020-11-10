@@ -2,7 +2,20 @@
 
 use Site\Client;
 
+
+session_start();
+
 require "header.php";
+include "Model/User.php";
+
+$user = new UserId();
+$connected=$user->isConnected();
+if(!$connected)
+{
+// echo '<script>window.location.replace("login.php");</script>';
+}
+
+
 ?>
 
 
@@ -10,13 +23,13 @@ require "header.php";
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+          <h1 class="h3 mb-2 text-gray-800">Ajout d'un Client</h1>
+          <p class="mb-4">Veuillez entrer les données du client</a>.</p>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Ajout des données d'un client</h6>
             </div>
             <div class="card-body">
             <form method="POST">
@@ -72,7 +85,7 @@ include "Model/PDOConnection.php";
 
 if(isset($_POST['submit'])&&$_POST['submit']=="valider")
 {
-  $client = new Client($_POST['prenom'],$_POST['nom'],$_POST['adresse'],$_POST['codepostal'],$_POST['ville'],$_POST['loue'],$_POST['locations']);
+  $client = new Client($_POST['prenom'],$_POST['nom'],$_POST['adresse'],$_POST['codepostal'],$_POST['ville'],$_POST['loue']);
   $vehicle = new PDOConnectionHelper();
              
               $vv=$vehicle->connectDB();

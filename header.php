@@ -83,11 +83,26 @@
             <h6 class="collapse-header">Gestion des Clients:</h6>
             <a class="collapse-item" href="clients.php">Liste de tous les Clients</a>
             <a class="collapse-item" href="ajoutClient.php">Ajouter un Client</a>
-            <a class="collapse-item" href="modifClient.php">Modifier les données d'un Client</a>
+            <a class="collapse-item" href="modifClient.php">Modifier un Client</a>
             <a class="collapse-item" href="effacerClient.php">Effacer un Client</a>
           </div>
         </div>
       </li>   
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fas fa-fw fa-cog"></i>
+          <span>Gestion des Locations</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Gestion des Locations:</h6>
+            <a class="collapse-item" href="fiche.php">Fiche Client</a>
+            <a class="collapse-item" href="ajouterLoc.php">Ajouter une location</a>
+            <a class="collapse-item" href="modifLoc.php">Modifier une location</a>
+            <a class="collapse-item" href="effacerLoc.php">Effacer une Location </a>
+          </div>
+        </div>
+      </li>
     
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
