@@ -2,13 +2,9 @@
 
 class FichierImage{
 
-private $Img;
-
     public function transfert(){
         $ret        = false;
-        $img_blob   = '';
         $img_taille = 0;
-        $img_type   = '';
         $img_nom    = '';
         $taille_max = 250000;
         $ret        = is_uploaded_file($_FILES['fic']['tmp_name']);
@@ -25,14 +21,11 @@ private $Img;
                 return false;
             }
 
-            $img_type = $_FILES['fic']['type'];
             $img_nom  = $_FILES['fic']['name'];
-            $img_blob = file_get_contents ($_FILES['fic']['tmp_name']);
 
-            if (!is_dir($uploads_dir)) {
-                mkdir($uploads_dir, 0777, true);
-                copy($img_nom, "$uploads_dir");
-            }
+           
+                move_uploaded_file($_FILES['fic']['tmp_name'], "$uploads_dir/$img_nom");
+           
             
             return "$uploads_dir/$img_nom";
         }

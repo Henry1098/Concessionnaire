@@ -1,6 +1,10 @@
 <?php
 namespace Site;
-class Client
+
+use PDOConnectionHelper;
+require 'Model/PDOConnection.php';
+
+class Client extends PDOConnectionHelper
 {
 
     private $id;
@@ -11,7 +15,16 @@ class Client
     private $ville;
     private $loue;
 
-
+    public function __construct($prenom,$nom,$adresse,$codepostal,$ville,$loue)
+    {
+        $this->prenom = $prenom;
+        $this->nom = $nom;
+        $this->adresse = $adresse;
+        $this->codepostal = $codepostal;
+        $this->ville = $ville;
+        $this->loue = $loue;
+    }
+    
     public function getId()
     {
         return $this->id;
@@ -99,15 +112,7 @@ class Client
 
     
     
-    public function __construct($prenom,$nom,$adresse,$codepostal,$ville,$loue)
-    {
-        $this->prenom = $prenom;
-        $this->nom = $nom;
-        $this->adresse = $adresse;
-        $this->codepostal = $codepostal;
-        $this->ville = $ville;
-        $this->loue = $loue;
-    }
+    
     
     public function retournerClient()
     {

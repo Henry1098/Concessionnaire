@@ -9,7 +9,15 @@ class Vehicule
     private $prix;
     private $image;
 
-   
+    public function __construct($nom,$marque,$enLocation,$prix,$image)
+    {
+        $this->nom = $nom;
+        $this->marque=$marque;  
+        $this->enLocation = $enLocation;
+        $this->prix = $prix;
+        $this->image=$image;
+    }
+    
     public function setMarque($marque)
     {
         $this->marque=$marque;
@@ -72,13 +80,6 @@ class Vehicule
         $this->$image=$image;
     }
 
-    public function __construct($nom,$marque,$enLocation,$prix,$image)
-    {
-        $this->nom = $nom;
-        $this->marque=$marque;  
-        $this->enLocation = $enLocation;
-        $this->prix = $prix;
-        $this->image=$image;
-    }
+  
 }
 ?>
